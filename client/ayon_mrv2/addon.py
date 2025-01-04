@@ -5,7 +5,7 @@ from .version import __version__
 from .constants import ADDON_NAME, MRV2_ROOT
 
 
-class MRV2Addon(AYONAddon, IPluginPaths):
+class Mrv2Addon(AYONAddon, IPluginPaths):
     """Addon adds mrv2 functionality via plugins."""
 
     name = ADDON_NAME

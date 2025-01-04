@@ -1,8 +1,8 @@
 from .version import __version__
-from .addon import MRV2Addon
+from .addon import Mrv2Addon
 
 
 __all__ = (
     "__version__",
-    "MRV2Addon",
+    "Mrv2Addon",
 )

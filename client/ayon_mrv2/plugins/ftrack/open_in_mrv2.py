@@ -4,17 +4,17 @@ from operator import itemgetter
 
 from ayon_ftrack.common import LocalAction
 
-from ayon_mrv2.utils import MRV2ExecutableCache, get_mrv2_icon_url
+from ayon_mrv2.utils import Mrv2ExecutableCache, get_mrv2_icon_url
 
 from ayon_core.lib import run_detached_process
 from ayon_core.lib.transcoding import IMAGE_EXTENSIONS, VIDEO_EXTENSIONS
 
 
-class MRV2ViewAction(LocalAction):
-    """Launch MRV2View action."""
+class Mrv2ViewAction(LocalAction):
+    """Launch mrv2View action."""
     identifier = "mrv2view-launch-action"
-    label = "MRV2 View"
-    description = "MRV2 View Launcher"
+    label = "mrv2 View"
+    description = "mrv2 View Launcher"
     icon = get_mrv2_icon_url()
 
     type = "Application"
@@ -23,7 +23,7 @@ class MRV2ViewAction(LocalAction):
         ext.lstrip(".")
         for ext in set(IMAGE_EXTENSIONS) | set(VIDEO_EXTENSIONS)
     }
-    _executable_cache = MRV2ExecutableCache()
+    _executable_cache = Mrv2ExecutableCache()
 
     def discover(self, session, entities, event):
         """Return available actions based on *event*. """
@@ -80,7 +80,7 @@ class MRV2ViewAction(LocalAction):
         if not path:
             return {
                 "success": False,
-                "message": "Couldn't find MRV2 executable."
+                "message": "Couldn't find mrv2 executable."
             }
 
         version_items = []
@@ -140,7 +140,7 @@ class MRV2ViewAction(LocalAction):
         return {"items": [item]}
 
     def launch(self, session, entities, event):
-        """Callback method for MRV2View action."""
+        """Callback method for mrv2View action."""
 
         # Launching application
         event_values = event["data"].get("values")
@@ -151,13 +151,13 @@ class MRV2ViewAction(LocalAction):
         if not executable:
             return {
                 "success": False,
-                "message": "Couldn't find MRV2 executable."
+                "message": "Couldn't find mrv2 executable."
             }
 
         filpath = os.path.normpath(event_values["path"])
 
         cmd = [
-            # MRV2 path
+            # mrv2 path
             str(executable),
             # PATH TO COMPONENT
             filpath
@@ -165,7 +165,7 @@ class MRV2ViewAction(LocalAction):
         self.log.info(f"Opening: {cmd}")
 
         try:
-            # Run MRV2 with these commands
+            # Run mrv2 with these commands
             run_detached_process(cmd)
 
         except FileNotFoundError:
@@ -182,4 +182,4 @@ class MRV2ViewAction(LocalAction):
 def register(session):
     """Register hooks."""
 
-    MRV2ViewAction(session).register()
+    Mrv2ViewAction(session).register()

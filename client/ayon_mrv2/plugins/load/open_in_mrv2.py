@@ -7,13 +7,13 @@ from ayon_core.lib import run_detached_process
 from ayon_core.lib.transcoding import IMAGE_EXTENSIONS, VIDEO_EXTENSIONS
 from ayon_core.pipeline import load
 
-from ayon_mrv2.utils import MRV2ExecutableCache
+from ayon_mrv2.utils import Mrv2ExecutableCache
 
 
-class OpenInMRV2(load.LoaderPlugin):
+class OpenInMrv2(load.LoaderPlugin):
     """Open Image Sequence with system default"""
 
-    _executable_cache = MRV2ExecutableCache()
+    _executable_cache = Mrv2ExecutableCache()
     product_types = ["*"]
     representations = ["*"]
     extensions = {
@@ -21,7 +21,7 @@ class OpenInMRV2(load.LoaderPlugin):
         for ext in set(IMAGE_EXTENSIONS) | set(VIDEO_EXTENSIONS)
     }
 
-    label = "Open in MRV2"
+    label = "Open in mrv2"
     order = -10
     icon = "play-circle"
     color = "orange"
@@ -60,14 +60,14 @@ class OpenInMRV2(load.LoaderPlugin):
 
         executable = self.get_mrv2_path()
         cmd = [
-            # MRV2 path
+            # mrv2 path
             str(executable),
             # PATH TO COMPONENT
             filepath
         ]
 
         try:
-            # Run MRV2 with these commands
+            # Run mrv2 with these commands
             run_detached_process(cmd)
             # Keep process in memory for some time
             time.sleep(0.1)

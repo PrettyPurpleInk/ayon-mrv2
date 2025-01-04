@@ -9,13 +9,13 @@ from .constants import ADDON_NAME
 
 
 def get_mrv2_icon_url(server_url=None):
-    """Get URL to MRV2 icon.
+    """Get URL to mrv2 icon.
 
     Args:
         server_url (Optional[str]): AYON server URL.
 
     Returns:
-        str: URL where MRV2 icon is located.
+        str: URL where mrv2 icon is located.
     """
 
     server_url = server_url or ayon_api.get_base_url()
@@ -31,7 +31,7 @@ def get_mrv2_paths_from_settings(addon_settings=None):
         addon_settings (Optional[dict[str, Any]): Addon settings.
 
     Returns:
-        list[str]: List to MRV2 executable paths. Paths are not validated.
+        list[str]: List to mrv2 executable paths. Paths are not validated.
     """
 
     if addon_settings is None:
@@ -45,11 +45,11 @@ def get_mrv2_executable_path(paths=None, addon_settings=None):
     """
 
     Args:
-        paths (Optional[list[str]]): List of paths to MRV2 executable.
+        paths (Optional[list[str]]): List of paths to mrv2 executable.
         addon_settings (Optional[dict[str, Any]): Addon settings.
 
     Returns:
-        list[str]: List of available paths to MRV2 executable.
+        list[str]: List of available paths to mrv2 executable.
     """
 
     if paths is None:
@@ -61,7 +61,7 @@ def get_mrv2_executable_path(paths=None, addon_settings=None):
     return None
 
 
-class MRV2ExecutableCache:
+class Mrv2ExecutableCache:
     lifetime = 10
 
     def __init__(self):
@@ -83,10 +83,10 @@ class MRV2ExecutableCache:
         return (start - self._cached_time) <= self.lifetime
 
     def get_paths(self):
-        """Get all paths to MRV2 executable from settings.
+        """Get all paths to mrv2 executable from settings.
 
         Returns:
-            list[str]: Path to MRV2 executables.
+            list[str]: Path to mrv2 executables.
         """
 
         if not self.is_cache_valid():
@@ -95,10 +95,10 @@ class MRV2ExecutableCache:
         return self._mrv2_paths
 
     def get_path(self):
-        """Get path to MRV2 executable.
+        """Get path to mrv2 executable.
 
         Returns:
-            Union[str, None]: Path to MRV2 executable or None.
+            Union[str, None]: Path to mrv2 executable or None.
         """
 
         if not self.is_cache_valid():
